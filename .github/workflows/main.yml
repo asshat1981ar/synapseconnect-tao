@@ -19,18 +19,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
         run: |
-          npm install -g pnpm
-          pnpm install
+          npm install
 
       - name: Lint
-        run: pnpm lint
+        run: npm run lint
 
       - name: Test
-        run: pnpm test -- --coverage
+        run: npm run test -- --coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -55,9 +54,8 @@ jobs:
       - name: Build Dashboard
         working-directory: dashboard
         run: |
-          npm install -g pnpm
-          pnpm install
-          pnpm run build
+          npm install
+          npm run build
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
